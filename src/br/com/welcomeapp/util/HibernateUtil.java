@@ -8,6 +8,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+import br.com.welcomeapp.model.Ddd;
 import br.com.welcomeapp.model.Phone;
 import br.com.welcomeapp.model.PhoneType;
 import br.com.welcomeapp.model.User;
@@ -37,6 +38,7 @@ public class HibernateUtil {
 				configuration.addAnnotatedClass(User.class);
 				configuration.addAnnotatedClass(Phone.class);
 				configuration.addAnnotatedClass(PhoneType.class);
+				configuration.addAnnotatedClass(Ddd.class);
 
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();
