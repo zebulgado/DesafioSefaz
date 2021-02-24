@@ -1,5 +1,7 @@
 package br.com.welcomeapp.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -59,8 +61,21 @@ public class UserDao {
 		}
 	}
 	
-	
-	
-	
-
+	@SuppressWarnings("unchecked")
+	public List<User> readAll() {
+		Transaction transaction = null;
+		List<User> users = null;
+		
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+			users = session.createQuery("from user").getResultList();
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return users;
+	}
 }
