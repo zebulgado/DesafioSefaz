@@ -1,6 +1,5 @@
 package br.com.welcomeapp.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,41 +10,36 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="phone_type")
-public class PhoneType {
+@Table(name="ddd")
+public class Ddd {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "phone_type_seq_gen")
-	@SequenceGenerator(name = "phone_type_seq_gen", sequenceName = "phone_type_id_seq")
-	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "ddd_type_seq_gen")
+	@SequenceGenerator(name = "ddd_type_seq_gen", sequenceName = "ddd_type_id_seq")
 	private int id;
 	
-	private String type;
+	private int prefix;
 	
 	@ManyToOne
 	@JoinColumn(name="phone_id")
 	private Phone phone;
 	
-	public PhoneType() {
+	public Ddd() {
 		
 	}
 
-	public PhoneType(String type, Phone phone) {
+	public Ddd(int prefix, Phone phone) {
 		super();
-		this.type = type;
+		this.prefix = prefix;
 		this.phone = phone;
 	}
 
-	public int getId() {
-		return id;
+	public int getPrefix() {
+		return prefix;
 	}
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
+	public void setPrefix(int prefix) {
+		this.prefix = prefix;
 	}
 
 	public Phone getPhone() {
@@ -55,5 +49,8 @@ public class PhoneType {
 	public void setPhone(Phone phone) {
 		this.phone = phone;
 	}
-	
+
+	public int getId() {
+		return id;
+	}
 }

@@ -1,24 +1,44 @@
 package br.com.welcomeapp.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 import com.sun.tools.javac.util.List;
 
+@Entity
+@Table(name="user")
 public class User {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "user_seq_gen")
+	@SequenceGenerator(name = "user_seq_gen", sequenceName = "user_id_seq")
 	private int id;
+	
 	private String name;
+	
 	private String email;
-	private String senha;
+	
+	private String password;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Phone> phones;
 
 	public User() {
 		
 	}
 	
-	public User(String name, String email, String senha, List<Phone> phones) {
+	public User(String name, String email, String password, List<Phone> phones) {
 		super();
 		this.name = name;
 		this.email = email;
-		this.senha = senha;
+		this.password = password;
 		this.phones = phones;
 	}
 	
@@ -42,12 +62,12 @@ public class User {
 		this.email = email;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public List<Phone> getPhones() {
