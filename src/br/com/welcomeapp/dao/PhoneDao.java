@@ -5,18 +5,17 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import br.com.welcomeapp.model.User;
+import br.com.welcomeapp.model.Phone;
 import br.com.welcomeapp.util.HibernateUtil;
 
+public class PhoneDao {
 
-public class UserDao {
-	
-	public void create(User user) {
+	public void create(Phone phone) {
 		Transaction transaction = null;
 		
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			session.save(user);
+			session.save(phone);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
@@ -26,13 +25,13 @@ public class UserDao {
 		}
 	}
 	
-	public User readById(int id) {
+	public Phone readById(int id) {
 		Transaction transaction = null;
-		User user = null;
+		Phone phone = null;
 		
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			user = session.get(User.class, id);
+			phone = session.get(Phone.class, id);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
@@ -40,22 +39,7 @@ public class UserDao {
 			}
 			e.printStackTrace();
 		}
-		return user;
-	}
-	
-	public void update(User user) {
-		Transaction transaction = null;
-		
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-			transaction = session.beginTransaction();
-			session.update(user);
-			transaction.commit();
-		} catch (Exception e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
-			e.printStackTrace();
-		}
+		return phone;
 	}
 	
 	public void delete(int id) {
@@ -63,9 +47,9 @@ public class UserDao {
 		
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			User user = session.get(User.class, id);
-			if (user != null) {
-				session.delete(user);
+			Phone phone = session.get(Phone.class, id);
+			if (phone != null) {
+				session.delete(phone);
 			}
 			transaction.commit();
 		} catch (Exception e) {
@@ -77,13 +61,13 @@ public class UserDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<User> readAll() {
+	public List<Phone> readAll() {
 		Transaction transaction = null;
-		List<User> users = null;
+		List<Phone> phones = null;
 		
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			users = session.createQuery("from user").getResultList();
+			phones = session.createQuery("from phone").getResultList();
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
@@ -91,6 +75,6 @@ public class UserDao {
 			}
 			e.printStackTrace();
 		}
-		return users;
+		return phones;
 	}
 }
