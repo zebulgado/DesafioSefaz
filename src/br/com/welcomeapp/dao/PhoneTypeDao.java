@@ -82,7 +82,7 @@ public class PhoneTypeDao {
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			phoneTypes = session.createQuery("from phoneType").getResultList();
+			phoneTypes = session.createQuery("from phone_type").getResultList();
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {

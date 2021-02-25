@@ -8,12 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import com.sun.tools.javac.util.List;
 
 @Entity
 @Table(name="phone")
@@ -24,16 +23,16 @@ public class Phone {
 	@SequenceGenerator(name = "phone_seq_gen", sequenceName = "phone_id_seq")
 	@Column(name = "id")
 	private int id;
-
-	private int ddd;
 	
 	private String number;
 	
-	@OneToMany(mappedBy = "phone", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-	private List<PhoneType> phoneTypes;
+	@OneToOne
+	@JoinColumn(name="phone_type_id")
+	private PhoneType phoneType;
 	
-	@OneToMany(mappedBy = "phone", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-	private List<Ddd> dddList;
+	@OneToOne
+	@JoinColumn(name="ddd_id")
+	private Ddd ddd;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
@@ -43,25 +42,16 @@ public class Phone {
 		
 	}
 
-	public Phone(int ddd, String number, List<PhoneType> phoneTypes, User user) {
+	public Phone(String number, PhoneType phoneType, User user) {
 		super();
-		this.ddd = ddd;
 		this.number = number;
-		this.phoneTypes = phoneTypes;
-		this.phoneTypes = phoneTypes;
+		this.phoneType = phoneType;
+		this.phoneType = phoneType;
 		this.user = user;
 	}
 	
 	public int getId() {
 		return id;
-	}
-
-	public int getDdd() {
-		return ddd;
-	}
-
-	public void setDdd(int ddd) {
-		this.ddd = ddd;
 	}
 
 	public String getNumber() {
@@ -72,20 +62,20 @@ public class Phone {
 		this.number = number;
 	}
 
-	public List<PhoneType> getPhoneTypes() {
-		return phoneTypes;
+	public PhoneType getPhoneTypes() {
+		return phoneType;
 	}
 
-	public void setPhoneTypes(List<PhoneType> phoneTypes) {
-		this.phoneTypes = phoneTypes;
+	public void setPhoneType(PhoneType phoneType) {
+		this.phoneType = phoneType;
 	}
 
-	public List<Ddd> getDddList() {
-		return dddList;
+	public Ddd getDdd() {
+		return ddd;
 	}
 
-	public void setDddList(List<Ddd> dddList) {
-		this.dddList = dddList;
+	public void setDdd(Ddd ddd) {
+		this.ddd = ddd;
 	}
 
 	public User getUser() {
