@@ -15,7 +15,7 @@
 	    <div id="navbarSupportedContent">
 	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 	        <li class="nav-item">
-	          <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/index.jsp">Home</a>
+	          <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath}/index.jsp">Home</a>
 	        </li>
 	        <li class="nav-item">
 	          <a class="nav-link" href="${pageContext.request.contextPath}/user-list.jsp">Lista</a>
@@ -29,11 +29,11 @@
 	</nav>
 	<div class="text-center container">
 		<h1 class="display-1">Bem Vindo!</h1>
-		<div class="btn-group-vertical">
-			<a class="btn btn-primary" href="#" role="button">Fazer Login</a>
-			<a class="btn btn-primary" href="${pageContext.request.contextPath}/user-list.jsp" role="button">Lista</a>
-			<a class="btn btn-primary" href="${pageContext.request.contextPath}/user-new.jsp" role="button">Novo</a>
-		</div>
+		<div class="btn-group" role="group" aria-label="Basic example">
+			<button type="button" class="btn btn-primary">Left</button>
+			<button type="button" class="btn btn-primary">Middle</button>
+			<button type="button" class="btn btn-primary">Right</button>
+</div>
 	</div>
 </body>
 </html>

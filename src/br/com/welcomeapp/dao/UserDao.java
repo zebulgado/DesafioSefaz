@@ -83,7 +83,7 @@ public class UserDao {
 		
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			users = session.createQuery("from user").getResultList();
+			users = session.createQuery("from User").getResultList();
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {

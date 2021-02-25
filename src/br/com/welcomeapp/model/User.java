@@ -1,6 +1,9 @@
 package br.com.welcomeapp.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,21 +13,24 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.sun.tools.javac.util.List;
 
 @Entity
-@Table(name="user")
+@Table(name="user_welcomeapp")
 public class User {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "user_seq_gen")
-	@SequenceGenerator(name = "user_seq_gen", sequenceName = "user_id_seq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "user_welcomeapp_seq_gen")
+	@SequenceGenerator(name = "user_welcomeapp_seq_gen", sequenceName = "user_welcomeapp_id_seq")
+	@Column(name = "id")
 	private int id;
 	
+	@Column(name = "name")
 	private String name;
 	
+	@Column(name = "email")
 	private String email;
 	
+	@Column(name = "password")
 	private String password;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
@@ -36,6 +42,15 @@ public class User {
 	
 	public User(String name, String email, String password, List<Phone> phones) {
 		super();
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.phones = phones;
+	}
+	
+	public User(int id, String name, String email, String password, List<Phone> phones) {
+		super();
+		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.password = password;

@@ -1,55 +1,48 @@
 package br.com.welcomeapp.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.sun.tools.javac.util.List;
-
 @Entity
-@Table(name="phone")
+@Table(name="phone_welcomeapp")
 public class Phone {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "phone_seq_gen")
-	@SequenceGenerator(name = "phone_seq_gen", sequenceName = "phone_id_seq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "phone_welcomeapp_seq_gen")
+	@SequenceGenerator(name = "phone_welcomeapp_seq_gen", sequenceName = "phone_welcomeapp_id_seq")
 	@Column(name = "id")
 	private int id;
-
+	
+	@Column(name = "ddd")
 	private int ddd;
 	
+	@Column(name = "number")
 	private String number;
 	
-	@OneToMany(mappedBy = "phone", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-	private List<PhoneType> phoneTypes;
-	
-	@OneToMany(mappedBy = "phone", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-	private List<Ddd> dddList;
+	@Column(name = "phone_types")
+	private String phoneTypes;
 	
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="user_welcomeapp_id")
 	private User user;
 	
 	public Phone() {
 		
 	}
 
-	public Phone(int ddd, String number, List<PhoneType> phoneTypes, User user) {
+	public Phone(int ddd, String number, String phoneTypes) {
 		super();
 		this.ddd = ddd;
 		this.number = number;
 		this.phoneTypes = phoneTypes;
 		this.phoneTypes = phoneTypes;
-		this.user = user;
 	}
 	
 	public int getId() {
@@ -72,20 +65,12 @@ public class Phone {
 		this.number = number;
 	}
 
-	public List<PhoneType> getPhoneTypes() {
+	public String getPhoneTypes() {
 		return phoneTypes;
 	}
 
-	public void setPhoneTypes(List<PhoneType> phoneTypes) {
+	public void setPhoneTypes(String phoneTypes) {
 		this.phoneTypes = phoneTypes;
-	}
-
-	public List<Ddd> getDddList() {
-		return dddList;
-	}
-
-	public void setDddList(List<Ddd> dddList) {
-		this.dddList = dddList;
 	}
 
 	public User getUser() {

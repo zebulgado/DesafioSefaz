@@ -15,10 +15,10 @@
 	    <div id="navbarSupportedContent">
 	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 	        <li class="nav-item">
-	          <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/index.jsp">Home</a>
+	          <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath}/index.jsp">Home</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="${pageContext.request.contextPath}/user-list.jsp">Lista</a>
+	          <a class="nav-link active" href="${pageContext.request.contextPath}/user-list.jsp">Lista</a>
 	        </li>
 	        <li class="nav-item">
 	          <a class="nav-link" href="${pageContext.request.contextPath}/user-new.jsp">Novo</a>
@@ -28,12 +28,16 @@
 	  </div>
 	</nav>
 	<div class="text-center container">
-		<h1 class="display-1">Bem Vindo!</h1>
-		<div class="btn-group-vertical">
-			<a class="btn btn-primary" href="#" role="button">Fazer Login</a>
-			<a class="btn btn-primary" href="${pageContext.request.contextPath}/user-list.jsp" role="button">Lista</a>
-			<a class="btn btn-primary" href="${pageContext.request.contextPath}/user-new.jsp" role="button">Novo</a>
-		</div>
+		<h1 class="display-5">Lista de Usuários</h1>
+			<table class="table table-striped">
+				<tr>
+	                <th scope="col">Nome</th>
+	                <th scope="col">Email</th>
+	                <th scope="col">Senha</th>
+	                <th scope="col">Telefone</th>
+	                <th scope="col">Descrição</th>
+            	</tr>
+			</table>
 	</div>
 </body>
 </html>

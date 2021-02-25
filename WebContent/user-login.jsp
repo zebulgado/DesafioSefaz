@@ -31,8 +31,10 @@
 		<h1 class="display-1">Bem Vindo!</h1>
 		<div class="btn-group-vertical">
 			<a class="btn btn-primary" href="#" role="button">Fazer Login</a>
-			<a class="btn btn-primary" href="${pageContext.request.contextPath}/user-list.jsp" role="button">Lista</a>
+			<a class="btn btn-primary" href="${pageContext.request.contextPath}/user-list.jsp" role="button">Listar</a>
 			<a class="btn btn-primary" href="${pageContext.request.contextPath}/user-new.jsp" role="button">Novo</a>
+			<a class="btn btn-primary" href="${pageContext.request.contextPath}/user-update.jsp" role="button">Alterar</a>
+			<a class="btn btn-primary" href="#" role="button">Remover</a>
 		</div>
 	</div>
 </body>
