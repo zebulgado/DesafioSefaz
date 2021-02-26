@@ -8,7 +8,7 @@
   <description>Welcome App for incoming users</description>
   
   <dependencies>
-  <!-- All got at https://mvnrepository.com/ -comentário pessoal não auto gerado :D -->
+  <!-- All got at https://mvnrepository.com/ -comentario pessoal nao auto gerado :D -->
 		<dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
