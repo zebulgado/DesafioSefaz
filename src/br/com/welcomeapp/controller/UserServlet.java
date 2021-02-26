@@ -37,7 +37,6 @@ public class UserServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	@SuppressWarnings({ "unused"})
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getParameter(Constants.ACTION_KEY);
@@ -56,6 +55,10 @@ public class UserServlet extends HttpServlet {
 				editUser(request, response);
 			} else if (action.equalsIgnoreCase(Constants.UPDATE_ACTION)) {
 				update(request, response);
+			} else if (action.equalsIgnoreCase(Constants.LOGIN_ACTION)) {
+				login(request, response);
+			} else if (action.equalsIgnoreCase(Constants.VALIDATE_USER_ACTION)) {
+				validateUser(request, response);
 			}
 		} catch (SQLException ex) {
 			throw new ServletException(ex);
@@ -144,18 +147,44 @@ public class UserServlet extends HttpServlet {
 		response.sendRedirect(request.getContextPath());
 	}
 	
-	public static String crypto(String pass) throws NoSuchAlgorithmException {
-
-	       MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
-	       byte messageDigest[] = algorithm.digest(pass.getBytes(StandardCharsets.UTF_8));
-	       StringBuilder hexString = new StringBuilder();
-	       for (byte b : messageDigest) { 
-	         hexString.append(String.format("%02X", 0xFF & b));
-	       }
-	       String password = hexString.toString();
-
-	       return password;
+	private void login(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("user-login.jsp");
+		dispatcher.forward(request, response);
 	}
 	
+	public boolean validateUser(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		User user = null;
+		String email = request.getParameter(Constants.USER_COL_EMAIL);
+		String password = null;
+		try {
+			password = crypto(request.getParameter(Constants.USER_COL_PASSWORD));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		user = userDao.readByEmail(email);
+		try {
+			if (user.getPassword()==crypto(password)) {
+				return true;
+			}
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public static String crypto(String pass) throws NoSuchAlgorithmException {
+		
+		MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
+		byte messageDigest[] = algorithm.digest(pass.getBytes(StandardCharsets.UTF_8));
+		StringBuilder hexString = new StringBuilder();
+		for (byte b : messageDigest) { 
+			hexString.append(String.format("%02X", 0xFF & b));
+		}
+		String password = hexString.toString();
+		
+		return password;
+	}
 	
 }

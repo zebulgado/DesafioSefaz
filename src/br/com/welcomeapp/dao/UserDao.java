@@ -45,6 +45,26 @@ public class UserDao {
 		return user;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public User readByEmail(String email) {
+		Transaction transaction = null;
+		List<User> users = null;
+		
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+			users = session.createQuery("FROM User WHERE email =: email")
+					.setParameter("email", email)		
+					.getResultList();
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return users.get(0);
+	}
+	
 	public void update(User user) {
 		Transaction transaction = null;
 		
@@ -94,5 +114,5 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		return users;
-	}
+	}	
 }
