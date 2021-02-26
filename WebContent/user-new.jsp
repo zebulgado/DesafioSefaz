@@ -28,33 +28,37 @@
 	  </div>
 	</nav>
 	<div class="text-center container">
-		<form class="row g-3">
+		<form class="row g-3" action="${pageContext.request.contextPath}/user?action=insert" method="post">
 		  <div class="col-12">
 		    <label for="inputname" class="form-label">Nome</label>
-		    <input type="text" class="form-control" id="inputname">
+		    <input type="text" class="form-control" id="inputname" name="name" value="<c:out value='${user.name}' />">
 		  </div>
 		  <div class="col-md-6">
 		    <label for="inputEmail" class="form-label">Email</label>
-		    <input type="text" class="form-control" id="inputEmail" placeholder="email@email.com">
+		    <input type="text" class="form-control" id="inputEmail" name="email" value="<c:out value='${user.email}' />">
 		  </div>
 		  <div class="col-md-6">
 		    <label for="inputPassword4" class="form-label">Password</label>
-		    <input type="password" class="form-control" id="inputPassword4">
+		    <input type="password" class="form-control" id="inputPassword4" name="password" value="<c:out value='${user.password}' />">
 		  </div>
 		  <div class="col-md-2">
 		    <label for="inputDdd" class="form-label">DDD</label>
-		    <input type="text" class="form-control" id="inputDdd">
+		    <input type="text" class="form-control" id="inputDdd" placeholder="081" name="ddd" value="<c:out value='${user.phones[0].ddd}' />">
 		  </div>
 		  <div class="col-md-4">
 		    <label for="inputPhone" class="form-label">Telefone</label>
-		    <select id="inputPhone" class="form-select">
-		      <option selected>Choose...</option>
-		      <option>...</option>
-		    </select>
+		    <input type="text" class="form-control" id="inputPhone" name="number" value="<c:out value='${user.phones[0].number}' />">
 		  </div>
 		  <div class="col-md-6">
 		    <label for="inputPhoneType" class="form-label">Descrição do telefone</label>
-		    <input type="text" class="form-control" id="inputPhoneType">
+		    <input type="text" class="form-control" id="inputPhoneType" name="phoneType" value="<c:out value='${user.phones[0].phoneTypes}' />">
+		  </div>
+		  <div class="col-md-4">
+		    <label for="inputPhoneTypeFuture" class="form-label">Descrição do telefone</label>
+		    <select id="inputPhoneTypeFuture" class="form-select">
+		      <option selected>Choose...</option>
+		      <option>...</option>
+		    </select>
 		  </div>
 		  <div class="col-12">
 		    <button type="submit" class="btn btn-primary">Criar</button>

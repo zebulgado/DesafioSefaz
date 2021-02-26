@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.welcomeapp.util.Constants;
-
+import br.com.welcomeapp.dao.PhoneDao;
 import br.com.welcomeapp.dao.UserDao;
 import br.com.welcomeapp.model.Phone;
 import br.com.welcomeapp.model.User;
@@ -25,9 +25,11 @@ import br.com.welcomeapp.model.User;
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserDao userDao;
+	private PhoneDao phoneDao;
 	
 	public void init() {
 		userDao = new UserDao();
+		phoneDao = new PhoneDao();
 	}
 		
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -76,7 +78,7 @@ public class UserServlet extends HttpServlet {
 	
 	private void insert(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
-		String name = request.getParameter(Constants.USER_COL_ID);
+		String name = request.getParameter(Constants.USER_COL_NAME);
 		String email = request.getParameter(Constants.USER_COL_EMAIL);
 		String password = null;
 		try {
@@ -88,12 +90,15 @@ public class UserServlet extends HttpServlet {
 		String number = request.getParameter(Constants.PHONE_COL_NUMBER);
 		String phoneType = request.getParameter(Constants.PHONE_COL_PHONE_TYPE);
 		
-		Phone phone = new Phone(ddd, number, phoneType);
+		User user = new User(name, email, password);
+		User createdUser = null;
+		createdUser = userDao.create(user);
+
+		Phone phone = new Phone(ddd, number, phoneType, createdUser);
 		List<Phone> phones = new ArrayList<Phone>();
 		phones.add(phone);
-		User user = new User(name, email, password, phones);
+		phoneDao.create(phone);
 		
-		userDao.create(user);
 		response.sendRedirect(request.getContextPath());
 	}
 	
@@ -101,6 +106,7 @@ public class UserServlet extends HttpServlet {
 			throws SQLException, ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter(Constants.USER_COL_ID));
 		User user = userDao.readById(id);
+		user.setPassword(null);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("user-update.jsp");
 		request.setAttribute("user", user);
 		dispatcher.forward(request, response);
@@ -109,7 +115,7 @@ public class UserServlet extends HttpServlet {
 	private void update(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
 		int id = Integer.parseInt(request.getParameter(Constants.USER_COL_ID));
-		String name = request.getParameter(Constants.USER_COL_ID);
+		String name = request.getParameter(Constants.USER_COL_NAME);
 		String email = request.getParameter(Constants.USER_COL_EMAIL);
 		String password = null;
 		try {

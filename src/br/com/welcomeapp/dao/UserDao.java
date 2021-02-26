@@ -11,19 +11,21 @@ import br.com.welcomeapp.util.HibernateUtil;
 
 public class UserDao {
 	
-	public void create(User user) {
+	public User create(User user) {
 		Transaction transaction = null;
 		
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
 			session.save(user);
 			transaction.commit();
+			session.refresh(user);
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 			e.printStackTrace();
 		}
+		return user;
 	}
 	
 	public User readById(int id) {

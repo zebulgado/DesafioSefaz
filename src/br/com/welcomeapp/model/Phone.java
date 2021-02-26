@@ -36,13 +36,20 @@ public class Phone {
 	public Phone() {
 		
 	}
-
+	
 	public Phone(int ddd, String number, String phoneTypes) {
 		super();
 		this.ddd = ddd;
 		this.number = number;
 		this.phoneTypes = phoneTypes;
+	}
+
+	public Phone(int ddd, String number, String phoneTypes, User user) {
+		super();
+		this.ddd = ddd;
+		this.number = number;
 		this.phoneTypes = phoneTypes;
+		this.user = user;
 	}
 	
 	public int getId() {

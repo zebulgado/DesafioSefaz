@@ -40,6 +40,13 @@ public class User {
 		
 	}
 	
+	public User(String name, String email, String password) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.password = password;
+	}
+	
 	public User(String name, String email, String password, List<Phone> phones) {
 		super();
 		this.name = name;
@@ -56,7 +63,7 @@ public class User {
 		this.password = password;
 		this.phones = phones;
 	}
-	
+
 	public int getId() {
 		return id;
 	}

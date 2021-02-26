@@ -13,7 +13,8 @@
 	  <div class="container-fluid">
 	    <a class="navbar-brand">Menu de Usuário</a>
 	    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      		<a class="nav-link nav-item" aria-current="page" id="delete">Deletar</a>
+      		<a class="nav-link nav-item delete" aria-current="page" id="delete">Deletar</a>
+      		<a class="nav-link nav-item update" aria-current="page" id="update">Update</a>
 		</ul>
 	    <div id="navbarSupportedContent">
 	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -54,16 +55,6 @@
 			</table>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script>
-		document.getElementById("delete").onclick = function() {
-		    var radios = document.getElementsByName("radioNoLabel");
-		    for (var i = 0; i < radios.length; i++) {
-		        if (!radios[i].checked) {
-		            console.log("Escolheu: " + radios[i].value);
-		            window.location.href = "${pageContext.request.contextPath}/user?action=delete&id="+radios[i].value;
-		        }
-		    }
-		};
-		</script>
+	<script src="js/scripts.js"></script>
 </body>
 </html>
