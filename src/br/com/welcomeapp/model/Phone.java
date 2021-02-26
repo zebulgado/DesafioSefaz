@@ -76,4 +76,9 @@ public class Phone {
 	public User getUser() {
 		return user;
 	}
+	
+	public String dddWithNumber() {
+		String result = this.ddd + this.number;
+		return result;
+	}
 }

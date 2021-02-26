@@ -18,22 +18,48 @@
 	          <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath}/index.jsp">Home</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="${pageContext.request.contextPath}/user-list.jsp">Lista</a>
+	          <a class="nav-link" href="${pageContext.request.contextPath}/user?action=list">Lista</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link active" href="${pageContext.request.contextPath}/user-new.jsp">Novo</a>
+	          <a class="nav-link active" href="${pageContext.request.contextPath}/user?action=new">Novo</a>
 	        </li>
 	      </ul>
 	    </div>
 	  </div>
 	</nav>
 	<div class="text-center container">
-		<h1 class="display-1">Bem Vindo!</h1>
-		<div class="btn-group" role="group" aria-label="Basic example">
-			<button type="button" class="btn btn-primary">Left</button>
-			<button type="button" class="btn btn-primary">Middle</button>
-			<button type="button" class="btn btn-primary">Right</button>
-</div>
+		<form class="row g-3">
+		  <div class="col-12">
+		    <label for="inputname" class="form-label">Nome</label>
+		    <input type="text" class="form-control" id="inputname">
+		  </div>
+		  <div class="col-md-6">
+		    <label for="inputEmail" class="form-label">Email</label>
+		    <input type="text" class="form-control" id="inputEmail" placeholder="email@email.com">
+		  </div>
+		  <div class="col-md-6">
+		    <label for="inputPassword4" class="form-label">Password</label>
+		    <input type="password" class="form-control" id="inputPassword4">
+		  </div>
+		  <div class="col-md-2">
+		    <label for="inputDdd" class="form-label">DDD</label>
+		    <input type="text" class="form-control" id="inputDdd">
+		  </div>
+		  <div class="col-md-4">
+		    <label for="inputPhone" class="form-label">Telefone</label>
+		    <select id="inputPhone" class="form-select">
+		      <option selected>Choose...</option>
+		      <option>...</option>
+		    </select>
+		  </div>
+		  <div class="col-md-6">
+		    <label for="inputPhoneType" class="form-label">Descrição do telefone</label>
+		    <input type="text" class="form-control" id="inputPhoneType">
+		  </div>
+		  <div class="col-12">
+		    <button type="submit" class="btn btn-primary">Criar</button>
+		  </div>
+		</form>
 	</div>
 </body>
 </html>

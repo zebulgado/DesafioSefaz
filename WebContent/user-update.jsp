@@ -18,10 +18,10 @@
 	          <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath}/index.jsp">Home</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="${pageContext.request.contextPath}/user-list.jsp">Lista</a>
+	          <a class="nav-link" href="${pageContext.request.contextPath}/user?action=list">Lista</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="${pageContext.request.contextPath}/user-new.jsp">Novo</a>
+	          <a class="nav-link" href="${pageContext.request.contextPath}/user?action=new">Novo</a>
 	        </li>
 	      </ul>
 	    </div>

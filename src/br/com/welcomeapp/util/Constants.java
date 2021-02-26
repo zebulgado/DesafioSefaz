@@ -8,6 +8,7 @@ public class Constants {
 	public static final String DELETE_ACTION = "delete";
 	public static final String EDIT_ACTION = "edit";
 	public static final String UPDATE_ACTION = "update";
+	public static final String LIST_ACTION = "list";
 	
 	public static final String USER_COL_ID = "id";
 	public static final String USER_COL_NAME = "name";

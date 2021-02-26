@@ -18,10 +18,10 @@
 	          <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/index.jsp">Home</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="${pageContext.request.contextPath}/user-list.jsp">Lista</a>
+	          <a class="nav-link" href="${pageContext.request.contextPath}/user?action=list">Lista</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="${pageContext.request.contextPath}/user-new.jsp">Novo</a>
+	          <a class="nav-link" href="${pageContext.request.contextPath}/user?action=new">Novo</a>
 	        </li>
 	      </ul>
 	    </div>
@@ -31,8 +31,8 @@
 		<h1 class="display-1">Bem Vindo!</h1>
 		<div class="btn-group-vertical">
 			<a class="btn btn-primary" href="#" role="button">Fazer Login</a>
-			<a class="btn btn-primary" href="${pageContext.request.contextPath}/user-list.jsp" role="button">Lista</a>
-			<a class="btn btn-primary" href="${pageContext.request.contextPath}/user-new.jsp" role="button">Novo</a>
+			<a class="btn btn-primary" href="${pageContext.request.contextPath}/user?action=list" role="button">Lista</a>
+			<a class="btn btn-primary" href="${pageContext.request.contextPath}/user?action=new" role="button">Novo</a>
 		</div>
 	</div>
 </body>

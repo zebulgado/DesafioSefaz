@@ -35,12 +35,13 @@ public class UserServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
+	@SuppressWarnings({ "unused"})
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getParameter(Constants.ACTION_KEY);
 		
 		try {
-			if(action == null || action.isEmpty()) {
+			if(action.equalsIgnoreCase(Constants.LIST_ACTION)) {
 				list(request, response);
 			}
 			else if (action.equalsIgnoreCase(Constants.CREATE_ACTION)) {
@@ -53,8 +54,6 @@ public class UserServlet extends HttpServlet {
 				editUser(request, response);
 			} else if (action.equalsIgnoreCase(Constants.UPDATE_ACTION)) {
 				update(request, response);
-			} else {
-				list(request, response);	
 			}
 		} catch (SQLException ex) {
 			throw new ServletException(ex);
@@ -64,7 +63,7 @@ public class UserServlet extends HttpServlet {
 	private void list(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
 		List<User> users = userDao.readAll();
-		request.setAttribute("users", users);
+		request.setAttribute("user", users);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("user-list.jsp"); //
 		dispatcher.forward(request, response);
 	}
