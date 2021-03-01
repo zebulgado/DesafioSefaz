@@ -30,7 +30,9 @@ Para o funcionamento da aplicação se faz necessário:
    - Permite que as informações de usuários criados sejam excluídas ou atualizadas;
    - Permite uma listagem de todos os usuários;
    - O nome "do" usuário, não o nome "de" usuário não pode ser alterado, propositalmente;
- 
+   - Criptografa as senhas para SHA2 antes de armazenar no banco. Na listagem elas são recoperadas criptografadas por se tratar de uma criptografia
+não reversível.
+
  O que faltou na aplicação?
  
    - O usuário não consegue efetuar o login
